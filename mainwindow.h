@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include<string>
+#include "client.h"
 using namespace std;
 
 namespace Ui {
@@ -14,8 +15,10 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    string on_submitButton_clicked();
-    explicit MainWindow(QWidget *parent = 0);
+    client m_client;
+    //void on_submitButton_clicked();
+    explicit MainWindow(client m_client,QWidget *parent = 0);
+   // explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
 private slots:
@@ -25,11 +28,11 @@ private slots:
 
     void on_timeEdit_2_timeChanged();
 
-    //string on_submitButton_clicked();
+    void on_submitButton_clicked();
 
 private:
     Ui::MainWindow *ui;
-    string result;
+    QString result;
 };
 
 #endif // MAINWINDOW_H

@@ -23,6 +23,7 @@ pthread_mutex_t accept_lock = PTHREAD_MUTEX_INITIALIZER;
 string client::current_username = "";
 vector<friends_info> client::friends_list = {};
 vector<connected_friends> client::friends_sockfd = {};
+vector<event_info> client::current_events = {};
 void * client::process_connection(void *arg) {
     //_client = this;
     int n;
@@ -85,6 +86,47 @@ void * client::process_connection(void *arg) {
             _client->evict_user_from_friends(commands[1]);
 
         }
+        else if(commands[0] == "data") {
+            cout << commands[1] << endl;
+            vector<event_info> events;
+            vector<string> event_strings;
+            event_strings = _client->split(commands[1],'%');
+            cout << event_strings.size() << endl;
+            //cout << event_strings[0] << endl;
+            for(int i=0; i<event_strings.size(); i++) {
+                vector<string> each_event = _client->split(event_strings[i],'|');
+                if(each_event.size() == 5) {
+                    event_info cur_evnt;
+                    for(int j=0;j<each_event.size(); j++) {
+                        //event_info cur_evnt;
+                        cur_evnt.hostname = each_event[0];
+                        cur_evnt.date = each_event[1];
+                        cur_evnt.start_time = each_event[2];
+                        cur_evnt.end_time = each_event[3];
+                        cur_evnt.event_desc = each_event[4];
+
+                        //events.push_back(cur_evnt);
+
+                    }
+                    events.push_back(cur_evnt);
+
+                }
+
+            }
+            //cout << events.size() << endl;
+            _client->current_events.clear();
+            _client->current_events = events;
+            //cout << "size"<< _client->current_events.size() << endl;
+
+
+
+
+            //this->current_events.clear();
+           // this->current_events = events;
+
+
+
+        }
         else {
             vector<string>locs_split;
             vector<string> locs;
@@ -119,6 +161,13 @@ void * client::process_connection(void *arg) {
         //handle_command_from_server(string buf);
     }
 }
+vector<event_info> client::get_events() {
+    sleep(1);
+
+    return _client->current_events;
+
+}
+
 void client::evict_user_from_friends(string username){
     this->friends_list.erase(
             std::remove_if(this->friends_list.begin(), this->friends_list.end(), [&](friends_info const & usr) {

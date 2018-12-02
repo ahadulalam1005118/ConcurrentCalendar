@@ -21,17 +21,28 @@ struct connected_friends {
     string username;
     int sockfd;
 };
+struct event_info {
+    string hostname;
+    string date;
+    string start_time;
+    string end_time;
+    string event_desc;
+};
 //vector<connected_friends> con[10];
 class client {
 public:
+    //vector<event> current_events;
+    vector<event_info>get_events();
     //static int sockfd;
     int begin(std::string config_file_path);
     int run();
     int exit();
     void write_to_sockfd(string str);
     static bool login_status;
+    static vector<event_info> current_events;
 
 private:
+    //static vector<event> current_events;
     static string current_username;
     //static bool login_status;
    // static void * message_handler(void *arg);
@@ -48,6 +59,7 @@ private:
     //user_info split_string_user_info(string s, string delimiter);
     template<typename Out> void split(const std::string &s, char delim, Out result);
     vector<string> split(const std::string &s, char delim);
+    void write_events_to_file(vector<event_info>events);
     string configuration_file_path;
     void handle_loggedin_command_from_server();
     string get_friend_address(string username);

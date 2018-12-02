@@ -2,7 +2,7 @@
 #define LOGINWINDOW_H
 
 #include <QMainWindow>
-#include "client.h"
+//#include "client.h"
 #include <iostream>
 #include <string>
 #include<mainwindow.h>
