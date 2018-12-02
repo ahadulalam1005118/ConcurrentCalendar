@@ -30,6 +30,8 @@ private slots:
 
     void on_submitButton_clicked();
 
+    void on_refreshButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString result;

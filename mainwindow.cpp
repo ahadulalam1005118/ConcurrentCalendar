@@ -95,10 +95,50 @@ void MainWindow::on_submitButton_clicked()
             ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
 
         }
-        sleep(5);
+        //sleep(5);
 
 
 
 
     //return result;
+}
+
+void MainWindow::on_refreshButton_clicked()
+{
+    ui->textEdit_2->clear();
+    vector<event_info> events = m_client.get_events();
+    //cout << "sz" << events.size() << endl;
+        //ui->textEdit_2->append("");
+        ui->textEdit_2->insertPlainText("Name");
+        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText("Event");
+        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText("Date");
+        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText("Start");
+        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText("End");
+        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        for(int cnt =0; cnt < events.size(); cnt++) {
+            QString qname = QString::fromStdString(events[cnt].hostname);
+            QString qdate = QString::fromStdString(events[cnt].date);
+            QString qstart_time = QString::fromStdString(events[cnt].start_time);
+            QString qend_time = QString::fromStdString(events[cnt].end_time);
+            QString qevent_desc = QString::fromStdString(events[cnt].event_desc);
+
+            //cout << events[cnt].date<< endl;
+             ui->textEdit_2->append("");
+            ui->textEdit_2->insertPlainText(qname);
+            ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
+            ui->textEdit_2->insertPlainText(qevent_desc);
+            ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
+            ui->textEdit_2->insertPlainText(qstart_time);
+            ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
+            ui->textEdit_2->insertPlainText(qend_time);
+            ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
+            ui->textEdit_2->insertPlainText(qdate);
+            ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
+
+        }
+
 }
