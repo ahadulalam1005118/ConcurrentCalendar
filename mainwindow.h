@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow
 public:
     client m_client;
     //void on_submitButton_clicked();
-    explicit MainWindow(client m_client,QWidget *parent = 0);
+    explicit MainWindow(client m_client, QWidget *parent = 0);
    // explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 

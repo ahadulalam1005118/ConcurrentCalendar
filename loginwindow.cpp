@@ -13,7 +13,7 @@ LoginWindow::LoginWindow(QWidget *parent) :
     //vector<friends_info> client::friends_list = {};
     //vector<connected_friends> client::friends_sockfd = {};
     std::string _configuration_file = "/home/ahad/EventCalendar/configurations";
-    mw = new MainWindow(m_client,this);
+   // mw = new MainWindow(m_client,this);
     m_client.begin(_configuration_file);
     m_client.run();
     ui->setupUi(this);
