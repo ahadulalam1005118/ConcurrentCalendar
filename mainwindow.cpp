@@ -65,15 +65,15 @@ void MainWindow::on_submitButton_clicked()
     //cout << "sz" << events.size() << endl;
         //ui->textEdit_2->append("");
         ui->textEdit_2->insertPlainText("Name");
-        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText(QString( 10, ' ' ));
         ui->textEdit_2->insertPlainText("Event");
-        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText(QString( 10, ' ' ));
         ui->textEdit_2->insertPlainText("Date");
-        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText(QString( 10, ' ' ));
         ui->textEdit_2->insertPlainText("Start");
-        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText(QString( 10, ' ' ));
         ui->textEdit_2->insertPlainText("End");
-        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText(QString( 10, ' ' ));
         for(int cnt =0; cnt < events.size(); cnt++) {
             QString qname = QString::fromStdString(events[cnt].hostname);
             QString qdate = QString::fromStdString(events[cnt].date);
@@ -87,12 +87,13 @@ void MainWindow::on_submitButton_clicked()
             ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
             ui->textEdit_2->insertPlainText(qevent_desc);
             ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
+            ui->textEdit_2->insertPlainText(qdate);
+            ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
             ui->textEdit_2->insertPlainText(qstart_time);
             ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
             ui->textEdit_2->insertPlainText(qend_time);
             ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
-            ui->textEdit_2->insertPlainText(qdate);
-            ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
+
 
         }
         //sleep(5);
@@ -110,15 +111,15 @@ void MainWindow::on_refreshButton_clicked()
     //cout << "sz" << events.size() << endl;
         //ui->textEdit_2->append("");
         ui->textEdit_2->insertPlainText("Name");
-        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText(QString( 10, ' ' ));
         ui->textEdit_2->insertPlainText("Event");
-        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText(QString( 10, ' ' ));
         ui->textEdit_2->insertPlainText("Date");
-        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText(QString( 10, ' ' ));
         ui->textEdit_2->insertPlainText("Start");
-        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText(QString( 10, ' ' ));
         ui->textEdit_2->insertPlainText("End");
-        ui->textEdit_2->insertPlainText(QString( 6, ' ' ));
+        ui->textEdit_2->insertPlainText(QString( 10, ' ' ));
         for(int cnt =0; cnt < events.size(); cnt++) {
             QString qname = QString::fromStdString(events[cnt].hostname);
             QString qdate = QString::fromStdString(events[cnt].date);
@@ -132,11 +133,11 @@ void MainWindow::on_refreshButton_clicked()
             ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
             ui->textEdit_2->insertPlainText(qevent_desc);
             ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
+            ui->textEdit_2->insertPlainText(qdate);
+            ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
             ui->textEdit_2->insertPlainText(qstart_time);
             ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
             ui->textEdit_2->insertPlainText(qend_time);
-            ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
-            ui->textEdit_2->insertPlainText(qdate);
             ui->textEdit_2->insertPlainText(QString( 4, ' ' ));
 
         }

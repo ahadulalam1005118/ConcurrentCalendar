@@ -22,6 +22,11 @@ LoginWindow::LoginWindow(QWidget *parent) :
     ui->textEdit->hide();
     ui->textEdit_2->hide();
     ui->pushButton_3->hide();
+    ui->label_3->hide();
+    ui->label_4->hide();
+    ui->textEdit_3->hide();
+    ui->textEdit_4->hide();
+    ui->pushButton_4->hide();
 }
 
 LoginWindow::~LoginWindow()
@@ -31,22 +36,34 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::on_pushButton_clicked() //login button
 {
+    ui->label_3->hide();
+    ui->label_4->hide();
+    ui->textEdit_3->hide();
+    ui->textEdit_4->hide();
+    ui->pushButton_4->hide();
     ui->label->show();
     ui->label_2->show();
     ui->textEdit->show();
     ui->textEdit_2->show();
     ui->pushButton_3->show();
+    command.clear();
     command.append("l");
 
 }
 
 void LoginWindow::on_pushButton_2_clicked() //registration button
 {
-    ui->label->show();
-    ui->label_2->show();
-    ui->textEdit->show();
-    ui->textEdit_2->show();
-    ui->pushButton_3->show();
+    ui->label->hide();
+    ui->label_2->hide();
+    ui->textEdit->hide();
+    ui->textEdit_2->hide();
+    ui->pushButton_3->hide();
+    ui->label_3->show();
+    ui->label_4->show();
+    ui->textEdit_3->show();
+    ui->textEdit_4->show();
+    ui->pushButton_4->show();
+    command.clear();
     command.append("r");
 }
 
@@ -57,6 +74,7 @@ void LoginWindow::on_pushButton_3_clicked() //submit button
     command.append("#");
     command.append(ui->textEdit->toPlainText().toStdString()); //password
     m_client.write_to_sockfd(command);
+    command.clear();
     sleep(2);
     ui->pushButton_3->disconnect();
     if(m_client.login_status == true) {
@@ -72,4 +90,25 @@ void LoginWindow::on_pushButton_3_clicked() //submit button
 
     //connect(&l, SIGNAL(loggedIn), &w, SLOT(show());
 
+}
+
+void LoginWindow::on_pushButton_4_clicked()
+{
+    command.append("#");
+    command.append(ui->textEdit_3->toPlainText().toStdString()); //username
+    command.append("#");
+    command.append(ui->textEdit_4->toPlainText().toStdString()); //password
+    m_client.write_to_sockfd(command);
+    command.clear();
+    ui->textEdit_3->clear();
+    ui->textEdit_4->clear();
+    //sleep(2);
+    //ui->submitButton_2->disconnect();
+
+
+    ui->label_3->hide();
+    ui->label_4->hide();
+    ui->textEdit_3->hide();
+    ui->textEdit_4->hide();
+    ui->pushButton_4->hide();
 }

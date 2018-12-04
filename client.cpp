@@ -54,6 +54,44 @@ void * client::process_connection(void *arg) {
         vector<string> commands;
         commands = _client->split(buf,'$');
         if(commands[0] == "loggedin") {
+            if(commands[2] == "data") {
+                vector<event_info> events;
+                vector<string> event_strings;
+                event_strings = _client->split(commands[3],'%');
+                cout << event_strings.size() << endl;
+                //cout << event_strings[0] << endl;
+                for(int i=0; i<event_strings.size(); i++) {
+                    vector<string> each_event = _client->split(event_strings[i],'|');
+                    if(each_event.size() == 5) {
+                        event_info cur_evnt;
+                        for(int j=0;j<each_event.size(); j++) {
+                            //event_info cur_evnt;
+                            cur_evnt.hostname = each_event[0];
+                            cur_evnt.date = each_event[1];
+                            cur_evnt.start_time = each_event[2];
+                            cur_evnt.end_time = each_event[3];
+                            cur_evnt.event_desc = each_event[4];
+
+                            //events.push_back(cur_evnt);
+
+                        }
+                        events.push_back(cur_evnt);
+
+                    }
+
+                }
+                //cout << events.size() << endl;
+                _client->current_events.clear();
+                _client->current_events = events;
+                //cout << "size"<< _client->current_events.size() << endl;
+
+
+
+
+                //this->current_events.clear();
+               // this->current_events = events;
+
+            }
             current_username = commands[1];
             login_status = true;
            // _client->handle_loggedin_command_from_server();
